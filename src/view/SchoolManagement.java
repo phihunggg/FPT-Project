@@ -134,31 +134,30 @@ public class SchoolManagement {
 
     private void addStudent() {
         Scanner scanner = new Scanner(System.in);
-System.out.println("\nAdd New Student\n");
-    System.out.println("------------------------");
-    System.out.print("Enter student ID: ");
-    String id = scanner.nextLine();
-
-    while (school.checkStudentId(id)) {
-        System.out.println("Student ID already exists. Please try again.");
+        System.out.println("\nAdd New Student\n");
+        System.out.println("------------------------");
         System.out.print("Enter student ID: ");
-        id = scanner.nextLine();
-    }
+        String id = scanner.nextLine();
 
-    System.out.print("Enter student name: ");
-    String name = scanner.nextLine();
-    System.out.print("Enter student average: ");
-    double average = scanner.nextDouble();
+        while (school.checkStudentId(id)) {
+            System.out.println("Student ID already exists. Please try again.");
+            System.out.print("Enter student ID: ");
+            id = scanner.nextLine();
+        }
 
-    while (average < 0 || average > 10) {
-        System.out.println("Invalid average. Please try again.");
+        System.out.print("Enter student name: ");
+        String name = scanner.nextLine();
         System.out.print("Enter student average: ");
-        average = scanner.nextDouble();
+        double average = scanner.nextDouble();
+
+        while (average < 0 || average > 10) {
+            System.out.println("Invalid average. Please try again.");
+            System.out.print("Enter student average: ");
+            average = scanner.nextDouble();
+        }
+
+        Student student = new Student(id, name, average);
+        school.addStudent(student);
+        System.out.println("Student added successfully.");
     }
-
-    Student student = new Student(id, name, average);
-    school.addStudent(student);
-    System.out.println("Student added successfully.");
 }
-}
-
