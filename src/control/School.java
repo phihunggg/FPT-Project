@@ -131,11 +131,46 @@ public class School {
 }
 
     public void loadDataFromFile() {
+        try{
+            File file = new File("sch.txt");
+            String filePath = file.getAbsolutePath();
+            
+            Scanner scanner = new Scanner(new File(filePath));
+            
+            while (scanner.hasNextLine()) {
+            
+            String line = scanner.nextLine();
+            String[] parts = line.split(",");
+            String id = parts[0];
+            String name = parts[1];
+            double average = Double.parseDouble(parts[2]);
+            Student student = new Student(id, name, average);
+            studentList.add(student);
+            
+        }
+            scanner.close();
+            System.out.println("Student data has been loaded from file!");
+        }catch (IOException e){
+            System.out.println("An error occured while loading student data from file!");
+            e.printStackTrace();
+        }
         
+    }
+    
+    public void removeStudent(String id){
+        for(Student student : studentList){
+            if(student.getId().equals(id)){
+                studentList.remove(student);
+                System.out.println("student with id" + id + "has been removed.");
+                return;
+            }
+        }
+        System.out.println("No student with id" + id + "found.");
     }
 
     public List<Student> getStudents() {
     return studentList;
     }
+   
 
 }

@@ -16,7 +16,7 @@ public class SchoolManagement {
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
 
-        while (selection != 5) {
+        while (selection != 8) {
             System.out.println("\nSchool Management System\n");
             System.out.println("------------------------");
             System.out.println("1. List all students");
@@ -25,7 +25,8 @@ public class SchoolManagement {
             System.out.println("4. Sorting display");
             System.out.println("5. Load data from file");
             System.out.println("6. Write data to file");
-            System.out.println("7. Exit");
+            System.out.println("7. Remove student");
+            System.out.println("8. Exit");
             System.out.println("------------------------");
             System.out.print("Enter selection: ");
             selection = scanner.nextInt();
@@ -51,6 +52,10 @@ public class SchoolManagement {
                     school.writeStudentsToFile(school.getStudents());
                     break;
                 case 7:
+                    removeStudent();
+                    break;
+                    
+                case 8:
                     System.out.println("Exiting...");
                     break;
                 default:
@@ -160,4 +165,21 @@ public class SchoolManagement {
         school.addStudent(student);
         System.out.println("Student added successfully.");
     }
+
+    private boolean removeStudent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nRemove student\n");
+        System.out.println("-------------------");
+        System.out.println("Enter student ID you want to remove: ");
+        String id = scanner.nextLine();
+        
+        if (removeStudent()){
+            System.out.println("Student with ID" + id + "has been removed successfully. ");
+        }else{
+            System.out.println("Student with ID" + id + "does not exist. ");
+        }
+        return true;
+    }
+
+   
 }
